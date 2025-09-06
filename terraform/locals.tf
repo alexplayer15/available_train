@@ -1,4 +1,9 @@
 locals {
-    available_train_table_name = "AvailableTrain"
-    available_train_lambda_name = "AvailableTrain" // does it make sense for the func and table name to be the same?
+  available_train_name           = "AvailableTrain"
+  s3_lambda_artifact_bucket_name = "AvailableTrainLambdaArtifacts"
+  s3_lambda_key_prefix           = "available-train-lambda"
+  s3_lambda_key                  = "${local.s3_lambda_key_prefix}/${var.artifact_name}"
+
+  runtime = "nodejs22.x"
+  handler = "index.handler"
 }

@@ -1,8 +1,8 @@
 resource "aws_dynamodb_table" "available_train_dynamodb_table" {
-  name           =  local.available_train_table_name
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "RouteId"
-  range_key      = "DepartureTime"
+  name         = local.available_train_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "RouteId"
+  range_key    = "DepartureTime"
 
   attribute {
     name = "RouteId"
