@@ -1,10 +1,13 @@
+#Lambda
 node_modules/
-
 /dist/
 
+#AWS SAM
 /.aws-sam/
 
-# terraform
+#Terraform
 *.tfstate
 providers
 /terraform/.terraform.lock.hcl
+*.local-state*
+output.json

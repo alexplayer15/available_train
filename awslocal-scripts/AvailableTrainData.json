@@ -9,8 +9,7 @@
           "departureTime": { "S": "08:15" },
           "arrivalTime": { "S": "10:05" },
           "durationMinutes": { "N": "110" },
-          "operator": { "S": "Chiltern Railways" },
-          "price": { "N": "32" }
+          "operator": { "S": "Chiltern Railways" }
         }
       }
   }]

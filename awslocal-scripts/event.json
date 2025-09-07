@@ -1,4 +1,29 @@
 {
-    "departureCode": "SHF",
-    "arrivalCode": "LDN"
+  "version": "2.0",
+  "routeKey": "POST /available-train",
+  "rawPath": "/available-train",
+  "rawQueryString": "",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "api-id-example",
+    "domainName": "example.com",
+    "domainPrefix": "example",
+    "http": {
+      "method": "POST",
+      "path": "/available-train",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "127.0.0.1",
+      "userAgent": "local-test"
+    },
+    "requestId": "req-12345",
+    "routeKey": "POST /available-train",
+    "stage": "dev",
+    "time": "07/Sep/2025:21:00:00 +0000",
+    "timeEpoch": 1757288400000
+  },
+  "body": "{\"departureCode\":\"SHF\",\"arrivalCode\":\"LDN\"}",
+  "isBase64Encoded": false
 }

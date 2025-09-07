@@ -29,7 +29,7 @@ export class AvailableTrainRepository{
     getQueryCommand(requestBody: AvailableTrainRequestBody){
         const pk = `${requestBody.departureCode}#${requestBody.arrivalCode}`;
         const command = new QueryCommand({
-            TableName: process.env.AVAILABLE_TRAIN_TABLE ?? "AvailableTrain", //make Lambda env var
+            TableName: process.env.AVAILABLE_TRAIN_TABLE ?? "AvailableTrain", 
             KeyConditionExpression: "routeId = :pk",
             ExpressionAttributeValues: {
                 ":pk": { S: pk }
@@ -46,10 +46,13 @@ export class AvailableTrainRepository{
         const trainDetails = queryCommandOutput.Items![0]
 
         return {
-            departureCode: trainDetails.departureCode.S!,
-            arrivalCode: trainDetails.arrivalCode.S!,
-            localDepartureDate: trainDetails.localDepartureDate.S!,
-            languageCode: trainDetails.languageCode.S!, //assuming complete data is guaranteed to be upserted to DynamoDb
+            routeId: trainDetails.routeId.S!, //need a try/catch here to inform user if the query was done against missing data
+            trainId: trainDetails.trainId.S!,
+            departureTime: trainDetails.departureTime.S!,
+            arrivalTime: trainDetails.arrivalTime.S!,
+            durationMinutes: parseInt(trainDetails.durationMinutes.N!, 10),
+            departureDate: trainDetails.departureDate.S!,
+            operator: trainDetails.operator.S!,//assuming complete data is guaranteed to be upserted to DynamoDb
         }
     }
 }

@@ -1,3 +1,11 @@
+## Introduction 
+
+This is the repository for the Available Train Lambda. This Lambda allows you to make an API request through API Gateway for an available train. 
+If an available train exists for your search criteria, you will be returned the details of that train.
+
+## Example usage
+
+
 ## Local setup
 
 In order to run and test the available flight lambda locally. Follow these steps:
