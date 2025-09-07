@@ -1,41 +1,18 @@
 resource "aws_dynamodb_table" "available_train_dynamodb_table" {
   name         = local.available_train_name
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "RouteId"
-  range_key    = "DepartureTime"
-
+  hash_key     = "routeId"
+  range_key    = "departureDate"
   attribute {
-    name = "RouteId"
+    name = "routeId"
     type = "S"
   }
-
   attribute {
-    name = "DepartureTime"
+    name = "departureDate"
     type = "S"
   }
-
-  attribute {
-    name = "departureCode"
-    type = "S"
-  }
-
-  attribute {
-    name = "arrivalCode"
-    type = "S"
-  }
-
-  attribute {
-    name = "localDepartureDate"
-    type = "S"
-  }
-
-  attribute {
-    name = "languageCode"
-    type = "S"
-  }
-
   tags = {
-    Name        = local.available_train_table_name
+    Name        = local.available_train_name
     Environment = var.environment
   }
 }

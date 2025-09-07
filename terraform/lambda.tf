@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "available_train_lambda" {
   function_name = local.available_train_name
-  role          = aws_iam_role.example.arn
+  role          = aws_iam_role.available_train_lambda_role.arn
   handler       = local.handler
 
   s3_bucket = local.s3_lambda_artifact_bucket_name
@@ -10,13 +10,12 @@ resource "aws_lambda_function" "available_train_lambda" {
 
   environment {
     variables = {
-      ENVIRONMENT = var.environment //what could I setup in config.ts?
-      LOG_LEVEL   = "info"          //what would be good settings for each env? Think about this
+      ENVIRONMENT = var.environment 
+      LOG_LEVEL   = local.log_level
     }
   }
-
   tags = {
     Environment = var.environment
-    Application = local.available_train_lambda_name
+    Application = local.available_train_name
   }
 }

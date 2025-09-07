@@ -29,8 +29,8 @@ export class AvailableTrainRepository{
     getQueryCommand(requestBody: AvailableTrainRequestBody){
         const pk = `${requestBody.departureCode}#${requestBody.arrivalCode}`;
         const command = new QueryCommand({
-            TableName: "Trains",
-            KeyConditionExpression: "PK = :pk",
+            TableName: process.env.AVAILABLE_TRAIN_TABLE ?? "AvailableTrain", //make Lambda env var
+            KeyConditionExpression: "routeId = :pk",
             ExpressionAttributeValues: {
                 ":pk": { S: pk }
             },

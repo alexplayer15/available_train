@@ -1,1 +1,10 @@
 node_modules/
+
+/dist/
+
+/.aws-sam/
+
+# terraform
+*.tfstate
+providers
+/terraform/.terraform.lock.hcl

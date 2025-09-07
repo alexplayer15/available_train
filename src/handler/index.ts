@@ -31,6 +31,6 @@ const handler = middy(availableTrainHandler)
     )
     .use(captureLambdaHandler(tracer));
   
-
+export { handler };
 
   

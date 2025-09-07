@@ -4,12 +4,14 @@ import { AvailableTrainRepository } from "../../src/repository/availableTrainRep
 import { Logger } from "@aws-lambda-powertools/logger";
 import { createAPIGatewayEvent } from "../utils/testUtils"
 import { DynamoDbStore } from "../../src/store/dynamoDbStore";
+import { Tracer } from '@aws-lambda-powertools/tracer';
 
+let tracer = new Tracer();
 let logger = new Logger();
 let store = new DynamoDbStore(logger)
 let repository = new AvailableTrainRepository(store, logger);
 let useCase = new AvailableTrainUseCase(repository, logger);
-let handler = new AvailableTrainHandler(useCase, logger);
+let handler = new AvailableTrainHandler(useCase, tracer, logger);
   
   describe("AvailableTrainHandler is sent a valid request for an available train", () => {
     it("should return an available train to the user", async () => {
