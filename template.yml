@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09' 
+Transform: AWS::Serverless-2016-10-31 
+Description: Template for Available Train Lambda
+
+Resources:
+  FlightOfferEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri:  dist/index.zip
+      Handler: index.handler
+      Timeout: 30  
+      Runtime: nodejs20.x
+      MemorySize: 512
+      Environment:
+        Variables:
+          LOCAL_DYNAMODB_ENDPOINT: http://localstack:4566
+          AWS_REGION: eu-west-2
+          USE_LOCAL_CONNECTION: true
+    Metadata:
+      SkipBuild: True

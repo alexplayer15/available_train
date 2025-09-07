@@ -1,12 +1,21 @@
-import { DynamoDB, DynamoDBServiceException, QueryCommand, QueryCommandOutput } from "@aws-sdk/client-dynamodb";
+import { DynamoDB, DynamoDBClient, DynamoDBServiceException, QueryCommand, QueryCommandOutput } from "@aws-sdk/client-dynamodb";
 import { Logger } from "@aws-lambda-powertools/logger";
+import config from '../config'
 
 export class DynamoDbStore {
     private readonly _logger: Logger; 
-    private readonly _dynamoDbClient = new DynamoDB({ region: 'eu-west-1' })
+    private readonly _dynamoDbClient: DynamoDBClient;
 
     constructor(_logger: Logger){
         this._logger = _logger;
+        this._dynamoDbClient = new DynamoDBClient(
+            {
+                region: config.AWS.Region(),
+                ...(config.AWS.IsLocal()
+            ? { endpoint: config.DynamoDB.LocalEndpoint() } :
+                {})
+            }
+        )
     }
 
     async queryItem(queryCommand: QueryCommand): Promise<QueryCommandOutput>{

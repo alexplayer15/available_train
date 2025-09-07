@@ -5,17 +5,21 @@ import { Logger } from "@aws-lambda-powertools/logger";
 import { ValidationError } from '../errors/errorTypes'
 import { AvailableTrainRequestSchema } from '../validations/requestValidation';
 import { ErrorCode } from '../errors/errorCodes'
+import { Tracer } from '@aws-lambda-powertools/tracer';
 
 export class AvailableTrainHandler {
-    private readonly _logger: Logger;
     private readonly _useCase: AvailableTrainUseCase;
+    private readonly _tracer: Tracer;
+    private readonly _logger: Logger;
 
-    constructor(_useCase: AvailableTrainUseCase, _logger: Logger){
-        this._useCase = _useCase;
-        this._logger = _logger;
+    constructor(useCase: AvailableTrainUseCase, tracer: Tracer, logger: Logger){
+        this._useCase = useCase;
+        this._tracer = tracer;
+        this._logger = logger;
     }
 
     handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
+        this._tracer.getSegment();
         this._logger.info(`Lambda invoked with event: ${JSON.stringify(event)}`)
         try {
             if (!event.body || event.body.trim() === "") {
