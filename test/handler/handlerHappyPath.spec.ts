@@ -17,8 +17,8 @@ let handler = new AvailableTrainHandler(useCase, tracer, logger);
     it("should return an available train to the user", async () => {
         // Arrange
         let eventBody = {
-         "departureCode": "BMO",
-         "arrivalCode": "MYB",
+         "departureCode": "SHF",
+         "arrivalCode": "LDN",
         }
         let stringifiedEventBody = JSON.stringify(eventBody);
         const apiGatewayEvent = createAPIGatewayEvent(stringifiedEventBody);
@@ -33,16 +33,15 @@ let handler = new AvailableTrainHandler(useCase, tracer, logger);
             "Count": 1,
             "ScannedCount": 1,
             "Items": [
-              {
-                "routeId": { "S": "SHF#LDN" },
-                "trainId": { "S": "CHILTERN-001" },
-                "departureTime": { "S": "08:15" },
-                "arrivalTime": { "S": "10:05" },
-                "durationMinutes": { "N": "110" },
-                "departureDate" : { "S": "2025-12-30" },
-                "operator" : { "S": "Chiltern Railways" }
-              }
-            ]
+            {
+              "routeId": { "S": "SHF#LDN" },
+              "trainId": { "S": "CHILTERN-001" },
+              "departureTime": { "S": "08:15" },
+              "arrivalTime": { "S": "10:05" },
+              "durationMinutes": { "N": "110" },
+              "departureDate" : { "S": "2025-12-30" },
+              "operator" : { "S": "Chiltern Railways" }
+            }]
           }
           
         jest.spyOn(store, "queryItem").mockResolvedValue(queryCommandOutput);
