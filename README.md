@@ -42,7 +42,7 @@ The API Gateway only accepts POST requests and notice you will need to provide a
   \"arrivalCode\":\"LDN\"}"
 ```
 
-At minimum, you will need to provide a departureCode and an arrivalCode for your train. They must be valid stations, if the Lambda cannot find an available train for your stations, it will return an empty list.
+At minimum, you will need to provide a departureCode and an arrivalCode for your train. They must be valid stations, if the Lambda cannot find an available train for your stations, it will return a 200 status code and inform you.
 
 If there is an available train, you should see a response like this:
 
