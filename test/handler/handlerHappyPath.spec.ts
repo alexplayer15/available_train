@@ -34,10 +34,13 @@ let handler = new AvailableTrainHandler(useCase, tracer, logger);
             "ScannedCount": 1,
             "Items": [
               {
-                "departureCode": { "S": "BMO" },
-                "arrivalCode": { "S": "MYB" },
-                "localDepartureDate": { "S": "2025-08-24" },
-                "languageCode": { "S": "en" },
+                "routeId": { "S": "SHF#LDN" },
+                "trainId": { "S": "CHILTERN-001" },
+                "departureTime": { "S": "08:15" },
+                "arrivalTime": { "S": "10:05" },
+                "durationMinutes": { "N": "110" },
+                "departureDate" : { "S": "2025-12-30" },
+                "operator" : { "S": "Chiltern Railways" }
               }
             ]
           }
@@ -45,10 +48,13 @@ let handler = new AvailableTrainHandler(useCase, tracer, logger);
         jest.spyOn(store, "queryItem").mockResolvedValue(queryCommandOutput);
 
         const expectedAvailableTrainDetails = {
-            "departureCode": "BMO",
-            "arrivalCode": "MYB",
-            "localDepartureDate": "2025-08-24",
-            "languageCode": "en",
+            "routeId": "SHF#LDN",
+            "trainId": "CHILTERN-001",
+            "departureTime": "08:15",
+            "arrivalTime": "10:05",
+            "durationMinutes": 110,
+            "departureDate": "2025-12-30",
+            "operator": "Chiltern Railways",
         }
   
         // Act
